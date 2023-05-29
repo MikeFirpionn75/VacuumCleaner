@@ -1,4 +1,4 @@
-# ProjetVacuumCleaner
+# Projet VacuumCleaner
 
 ## First Step 
 
