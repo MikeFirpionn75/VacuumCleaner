@@ -18,40 +18,40 @@ export function changeOrientation(position: string, direction: string, vacuumPos
   }
 }
 
-export function move(newPosition: string, direction:string, vacuumPosition: any, outOfTheRoom: boolean[], widthHeight: number[], grid: Array<Array<string>>): void{ 
+export function move(newPosition: string, direction:string, vacuumPosition: any, condition: any, widthHeight: number[], grid: Array<Array<string>>): void{ 
       
   if(newPosition == 'N' && direction == 'A'){                      
     if(vacuumPosition.vacuumPositionY+1 > widthHeight[1]-1){// I move the vacuumCleaner to the given direction,
-      outOfTheRoom[0] = true
+      condition.outOfTheRoom = true
     }else{
-      outOfTheRoom[0] = false
+      condition.outOfTheRoom = false
       grid[vacuumPosition.vacuumPositionY][vacuumPosition.vacuumPositionX] = ' '; // I clean behind it and update the position 
       grid[vacuumPosition.vacuumPositionY+1][vacuumPosition.vacuumPositionX] = 'X';
       vacuumPosition.vacuumPositionY = vacuumPosition.vacuumPositionY+1;
     }
   }else if(newPosition == 'E' && direction =='A'){  
     if(vacuumPosition.vacuumPositionX+1 > widthHeight[0]-1){
-      outOfTheRoom[0] = true
+      condition.outOfTheRoom = true
     }else{
-      outOfTheRoom[0] = false
+      condition.outOfTheRoom = false
       grid[vacuumPosition.vacuumPositionY][vacuumPosition.vacuumPositionX] = ' '; 
       grid[vacuumPosition.vacuumPositionY][vacuumPosition.vacuumPositionX+1] = 'X';
       vacuumPosition.vacuumPositionX = vacuumPosition.vacuumPositionX+1;
     }                    
   }else if(newPosition == 'W' && direction =='A'){
     if(vacuumPosition.vacuumPositionX-1 < 0){
-      outOfTheRoom[0] = true
+      condition.outOfTheRoom = true
     }else{
-      outOfTheRoom[0] = false
+      condition.outOfTheRoom = false
       grid[vacuumPosition.vacuumPositionY][vacuumPosition.vacuumPositionX] = ' ';
       grid[vacuumPosition.vacuumPositionY][vacuumPosition.vacuumPositionX-1] = 'X';
       vacuumPosition.vacuumPositionX = vacuumPosition.vacuumPositionX-1;
     }
   }else if(newPosition == 'S' && direction == 'A'){
     if(vacuumPosition.vacuumPositionY-1 < 0){
-      outOfTheRoom[0] = true
+      condition.outOfTheRoom = true
     }else{
-      outOfTheRoom[0] = false
+      condition.outOfTheRoom = false
       grid[vacuumPosition.vacuumPositionY][vacuumPosition.vacuumPositionX] = ' ';
       grid[vacuumPosition.vacuumPositionY-1][vacuumPosition.vacuumPositionX] = 'X';
       vacuumPosition.vacuumPositionY = vacuumPosition.vacuumPositionY-1;

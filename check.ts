@@ -12,12 +12,12 @@ export function checkIfGridIsEmpty(widthHeight: number[], grid: Array<Array<stri
 return emptyOrNot
 }
 
-export async function checkTheSizeOfTheRoom (valid:boolean[], grid: Array<Array<string>>): Promise<number[]>{
+export async function checkTheSizeOfTheRoom (condition: any, grid: Array<Array<string>>): Promise<number[]>{
     
   let width:number = -1;
   let height:number = -1
     
-  while(!valid[0]){
+  while(!condition.valid){
     const sizeRoom = await prompts({
     type: 'text',
     name: 'value',
@@ -34,22 +34,22 @@ export async function checkTheSizeOfTheRoom (valid:boolean[], grid: Array<Array<
       if(Number.isNaN(width) || Number.isNaN(height) || entiers.length>2){
         console.log("Your input is not correct, look at the example")
       }else{
-        valid[0] = true
+        condition.valid = true
         console.log(`The room is initialized to ${width} x ${height}`)
         initGrid(width,height);
         displayGrid(grid);
       }
     }
   }
-  valid[0] = false
+  condition.valid = false
   return [width, height]
 }
 
-export async function checkThePositionOfTheVacuumCleaner(valid:boolean[], widthHeight: number[],vacuumPosition: object, grid: Array<Array<string>>): Promise<void> {
+export async function checkThePositionOfTheVacuumCleaner(condition: any, widthHeight: number[],vacuumPosition: object, grid: Array<Array<string>>): Promise<void> {
   let position1: number = -1
   let position2: number = -1
   let orientation: string = ''
-  while (!valid[0]){
+  while (!condition.valid){
     const position = await prompts({
       type: 'text',
       name: 'value',
@@ -74,16 +74,16 @@ export async function checkThePositionOfTheVacuumCleaner(valid:boolean[], widthH
         console.log("The vacuum cleaner is out of the room, please put it inside")
         console.log(`x between 0 and ${widthHeight[0]-1} and y between 0 and ${widthHeight[1]-1} ` )
       }else{
-        valid[0] = true;
+        condition.valid = true;
         displayVacuumCleaner(position1,position2,orientation, vacuumPosition, grid);
       }
     } 
   }
-  valid[0] = false
+  condition.valid = false
 }
 
-export async function checkTheInstructions(valid:boolean[]){
-  while (!valid[0]){
+export async function checkTheInstructions(condition: any){
+  while (!condition.valid){
     const instruction = await prompts({
     type: 'text',
     name: 'value',
